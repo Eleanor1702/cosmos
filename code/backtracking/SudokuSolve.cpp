@@ -4,6 +4,52 @@ using namespace std;
 /*
  * Part of Cosmos by OpenGenus Foundation
 */
+
+int n = 9;
+
+bool isPossible(int mat[][9],int curr_row,int curr_col,int num){
+    ///Row or col should not have number
+    for(int x=0; x < n; x++){
+        if(mat[x][curr_row] == num || mat[curr_col][x] == num){
+            return false;
+        }
+    }
+
+    /// Subgrid should not have number
+    int curr_row_subgrid = (curr_row/3)*3;
+    int curr_col_subgrid = (curr_col/3)*3;
+
+    for(int x=curr_row_subgrid; x < curr_row_subgrid + 3; x++){
+        for(int y=curr_col_subgrid; y < curr_col_subgrid + 3; y++){
+            if(mat[x][y] == num){
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+void printMat(int mat[][9]){
+
+    for(int row=0; row < n; row++){
+        for(int col=0; col < n; col++){
+            cout << mat[row][col] << " ";
+
+            if((col+1)%3 == 0){
+                cout << '\t';
+            }
+        }
+        if((row+1)%3 == 0){
+            cout << endl;
+        }
+-- INSERT --                                                                                                                                          1,1           Top
+#include<iostream>
+using namespace std;
+
+/*
+ * Part of Cosmos by OpenGenus Foundation
+*/
 int n=9;
 
 bool isPossible(int mat[][9],int i,int j,int no){
